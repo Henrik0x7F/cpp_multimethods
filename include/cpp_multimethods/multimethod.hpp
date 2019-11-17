@@ -76,11 +76,11 @@ bool double_dispatch(Handler handler, BaseType param, Predicate pred = Predicate
         handler.template on_dispatch(static_cast<typename AddQualifiers<BaseType, ConcreteType>::type>(param));
         return true;
     }
-    return double_dispatch<Handler, Predicate, BaseType, ConcreteTypes...>(handler, param);
+    return double_dispatch<Handler, Predicate, BaseType, ConcreteTypes...>(handler, param, pred);
 }
 
 template<typename Handler, typename Predicate, typename BaseType>
-bool double_dispatch(Handler, BaseType)
+bool double_dispatch(Handler, BaseType, Predicate)
 {
     return false;
 }
